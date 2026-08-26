@@ -1,0 +1,410 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Pharma AI — Advancing Pharma Through AI</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --navy:#0F2742;
+    --pharma-blue:#0F4C81;
+    --emerald:#2E8B57;
+    --white:#FFFFFF;
+    --bg-light:#F4F8FB;
+    --ink:#172B3A;
+    --ink-soft:#5B707D;
+    --line:#DCE5EA;
+  }
+  *{box-sizing:border-box; margin:0; padding:0;}
+  html{scroll-behavior:smooth;}
+  body{
+    background:var(--bg-light);
+    color:var(--ink);
+    font-family:'IBM Plex Sans', sans-serif;
+    line-height:1.6;
+    -webkit-font-smoothing:antialiased;
+  }
+  @media (prefers-reduced-motion: reduce){
+    *{animation-duration:.001ms !important; transition-duration:.001ms !important; scroll-behavior:auto !important;}
+  }
+  a{color:inherit;}
+  .wrap{max-width:1160px; margin:0 auto; padding:0 28px;}
+  h1,h2,h3{font-family:'Space Grotesk', sans-serif; font-weight:600; letter-spacing:-0.01em; color:var(--navy);}
+  .eyebrow{
+    font-family:'IBM Plex Mono', monospace; font-size:11.5px; letter-spacing:.14em;
+    text-transform:uppercase; color:var(--emerald); font-weight:500;
+  }
+  :focus-visible{outline:2px solid var(--emerald); outline-offset:3px;}
+
+  /* ---------------- header ---------------- */
+  header{
+    position:sticky; top:0; z-index:60;
+    background:rgba(15,39,66,0.96);
+    backdrop-filter:blur(6px);
+  }
+  .nav{display:flex; align-items:center; justify-content:space-between; padding:18px 0;}
+  .logo{font-family:'Space Grotesk', sans-serif; font-weight:700; font-size:19px; letter-spacing:.01em; color:var(--white);}
+  .logo .ai{color:var(--emerald);}
+  .nav-links{display:flex; gap:26px; font-size:13.5px; font-family:'IBM Plex Mono', monospace;}
+  .nav-links a{text-decoration:none; color:#B9C6D1; transition:color .15s;}
+  .nav-links a:hover, .nav-links a:focus-visible{color:var(--white);}
+  .btn{
+    font-family:'IBM Plex Mono', monospace; font-size:13px; letter-spacing:.02em;
+    text-decoration:none; padding:11px 20px; border-radius:3px; display:inline-block;
+    border:1px solid var(--emerald); color:var(--white); background:transparent; cursor:pointer;
+    transition:background .15s, color .15s;
+  }
+  .btn:hover, .btn:focus-visible{background:var(--emerald); color:var(--navy);}
+  .btn-solid{background:var(--emerald); color:var(--navy); border-color:var(--emerald);}
+  .btn-solid:hover{background:var(--white); border-color:var(--white); color:var(--navy);}
+  .btn-dark{border-color:var(--navy); color:var(--navy);}
+  .btn-dark:hover{background:var(--navy); color:var(--white);}
+
+  /* ---------------- hero ---------------- */
+  .hero{background:var(--navy); color:var(--white); padding:96px 0 0; overflow:hidden;}
+  .hero-inner{text-align:center; max-width:760px; margin:0 auto; padding-bottom:40px;}
+  .hero h1{
+    color:var(--white); font-size:clamp(2.2rem, 5.6vw, 3.6rem); line-height:1.08; margin-top:20px;
+  }
+  .hero h1 .ai{color:var(--emerald);}
+  .hero-tags{
+    margin-top:22px; font-family:'IBM Plex Mono', monospace; font-size:13px; letter-spacing:.04em;
+    color:#9FB4C2;
+  }
+  .hero-tags span{color:var(--emerald);}
+  .hero-sub{margin-top:22px; color:#C7D4DC; font-size:16.5px; max-width:56ch; margin-left:auto; margin-right:auto;}
+  .hero-ctas{display:flex; gap:14px; justify-content:center; margin-top:34px; flex-wrap:wrap;}
+
+  /* signal detection strip — signature element */
+  .signal{position:relative; height:150px; margin-top:12px;}
+  .signal svg{width:100%; height:100%; display:block;}
+  .signal-path{
+    fill:none; stroke:var(--emerald); stroke-width:2.2; stroke-linecap:round; stroke-linejoin:round;
+    stroke-dasharray:1400; stroke-dashoffset:1400;
+    animation:draw 3.2s ease forwards;
+  }
+  @keyframes draw{ to{ stroke-dashoffset:0; } }
+  .signal-flag{
+    fill:var(--bg-light); font-family:'IBM Plex Mono', monospace; font-size:10.5px;
+  }
+  .signal-dot{fill:var(--emerald); opacity:0; animation:pop .4s ease forwards;}
+
+  /* ---------------- sections ---------------- */
+  section{padding:88px 0;}
+  .section-head{max-width:640px; margin:0 auto 50px; text-align:center;}
+  .section-head h2{font-size:clamp(1.7rem,3.2vw,2.3rem); margin-top:10px;}
+  .section-head p{color:var(--ink-soft); margin-top:14px; font-size:15.5px;}
+
+  /* knowledge areas — asymmetric, not 4 equal icon boxes */
+  .areas{display:grid; grid-template-columns:1.3fr 1fr; gap:1px; background:var(--line); border:1px solid var(--line);}
+  .area{background:var(--white); padding:36px 34px; display:flex; flex-direction:column; justify-content:space-between; min-height:230px;}
+  .area.tall{grid-row:span 2;}
+  .area .tag{font-family:'IBM Plex Mono', monospace; font-size:11px; color:var(--emerald); letter-spacing:.08em; margin-bottom:14px;}
+  .area h3{font-size:1.3rem; margin-bottom:10px;}
+  .area p{color:var(--ink-soft); font-size:14.5px;}
+  .area a{margin-top:20px; font-family:'IBM Plex Mono', monospace; font-size:13px; color:var(--pharma-blue); text-decoration:none; display:inline-flex; align-items:center; gap:6px;}
+  .area a:hover{text-decoration:underline;}
+
+  /* knowledge pathways — genuinely sequential, arrows earned */
+  .pathways{display:flex; flex-direction:column; gap:26px;}
+  .pathway{
+    background:var(--white); border:1px solid var(--line); border-left:4px solid var(--emerald);
+    padding:22px 26px; display:flex; align-items:center; gap:20px; flex-wrap:wrap;
+  }
+  .pathway .plabel{font-family:'Space Grotesk', sans-serif; font-weight:600; font-size:15px; min-width:170px; color:var(--navy);}
+  .psteps{display:flex; align-items:center; gap:10px; flex-wrap:wrap; font-family:'IBM Plex Mono', monospace; font-size:12.5px; color:var(--ink-soft);}
+  .psteps span.step{background:var(--bg-light); border:1px solid var(--line); padding:5px 10px; border-radius:3px; color:var(--ink);}
+  .psteps span.arrow{color:var(--emerald);}
+
+  /* featured resources */
+  .resources{display:grid; grid-template-columns:repeat(3,1fr); gap:24px;}
+  .resource{background:var(--white); border:1px solid var(--line); border-top:3px solid var(--pharma-blue); padding:30px 28px; display:flex; flex-direction:column;}
+  .resource .tag{font-family:'IBM Plex Mono', monospace; font-size:11px; letter-spacing:.06em; color:var(--pharma-blue); margin-bottom:12px;}
+  .resource h3{font-size:1.15rem; margin-bottom:10px;}
+  .resource p{color:var(--ink-soft); font-size:14.5px; flex-grow:1;}
+  .resource a{margin-top:18px; font-family:'IBM Plex Mono', monospace; font-size:13px; text-decoration:none; color:var(--emerald); font-weight:500;}
+  .resource a:hover{text-decoration:underline;}
+
+  /* why pharma ai — funnel not 4 equal icons */
+  .why-section{background:var(--navy); color:var(--white);}
+  .why-section .section-head h2, .why-section .section-head p{color:var(--white);}
+  .why-section .section-head p{color:#B9C6D1;}
+  .funnel{display:flex; align-items:stretch; gap:0; max-width:920px; margin:0 auto; flex-wrap:wrap;}
+  .funnel-step{
+    flex:1; min-width:200px; padding:30px 24px; position:relative;
+    border-right:1px solid rgba(255,255,255,0.14);
+  }
+  .funnel-step:last-child{border-right:none;}
+  .funnel-step .fnum{font-family:'IBM Plex Mono', monospace; font-size:11px; color:var(--emerald); letter-spacing:.1em;}
+  .funnel-step h3{color:var(--white); font-size:1.2rem; margin:10px 0 8px;}
+  .funnel-step p{color:#B9C6D1; font-size:13.5px;}
+
+  /* about founder */
+  .about{display:grid; grid-template-columns:200px 1fr; gap:40px; align-items:start;}
+  .avatar{
+    width:200px; height:200px; border-radius:6px; background:var(--pharma-blue);
+    display:flex; align-items:center; justify-content:center;
+    font-family:'Space Grotesk', sans-serif; font-weight:700; font-size:3rem; color:var(--white);
+  }
+  .about h3{font-size:1.5rem;}
+  .about .cred{font-family:'IBM Plex Mono', monospace; font-size:13px; color:var(--emerald); margin:8px 0 18px;}
+  .about p{color:var(--ink-soft); max-width:64ch;}
+  .about .btn{margin-top:22px;}
+
+  footer{background:var(--navy); color:#9FB4C2; padding:44px 0;}
+  .foot-grid{display:flex; justify-content:space-between; flex-wrap:wrap; gap:20px; font-size:13px;}
+  .foot-grid a{text-decoration:none;}
+  .foot-grid a:hover{color:var(--white);}
+  .foot-brand{font-family:'Space Grotesk', sans-serif; font-weight:700; color:var(--white); font-size:15px; margin-bottom:6px;}
+
+  .reveal{opacity:0; transform:translateY(16px); transition:opacity .6s ease, transform .6s ease;}
+  .reveal.in{opacity:1; transform:translateY(0);}
+
+  @media (max-width:900px){
+    .areas{grid-template-columns:1fr;}
+    .area.tall{grid-row:auto;}
+    .resources{grid-template-columns:1fr;}
+    .about{grid-template-columns:1fr;}
+    .avatar{width:120px; height:120px; font-size:2rem;}
+    .nav-links{display:none;}
+    .funnel-step{border-right:none; border-bottom:1px solid rgba(255,255,255,0.14);}
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="wrap nav">
+    <div class="logo">PHARMA<span class="ai">AI</span></div>
+    <nav class="nav-links">
+      <a href="#home">Home</a>
+      <a href="#pv">Pharmacovigilance</a>
+      <a href="#analytics">Analytics</a>
+      <a href="#ai">AI in Pharma</a>
+      <a href="#career">Career Hub</a>
+      <a href="#resources">Resources</a>
+      <a href="#about">About</a>
+    </nav>
+    <a href="#resources" class="btn btn-solid">Explore</a>
+  </div>
+</header>
+
+<div class="hero" id="home">
+  <div class="wrap hero-inner">
+    <p class="eyebrow">Pharma · AI · Healthcare Careers</p>
+    <h1>Advancing Pharma<br>Through <span class="ai">AI</span></h1>
+    <p class="hero-tags">Pharmacovigilance <span>·</span> Healthcare Analytics <span>·</span> AI in Pharma <span>·</span> Digital Health</p>
+    <p class="hero-sub">A knowledge hub for pharmacy and healthcare professionals — practical PV and analytics know-how, real interview prep, and a look at where AI is actually changing drug safety work.</p>
+    <div class="hero-ctas">
+      <a href="#resources" class="btn btn-solid">Explore Pharma AI</a>
+      <a href="#career" class="btn">PV Interview Guide</a>
+    </div>
+  </div>
+  <div class="wrap">
+    <div class="signal reveal">
+      <svg viewBox="0 0 1000 150" preserveAspectRatio="none" aria-label="Adverse event signal detected against a baseline noise trace">
+        <path class="signal-path" d="M0,110 L60,112 L110,108 L160,111 L210,109 L250,110 L280,60 L300,20 L320,60 L350,108 L400,110 L460,112 L520,109 L560,110 L600,108 L650,111 L700,109 L760,110 L820,112 L880,109 L940,111 L1000,110"/>
+        <circle class="signal-dot" cx="300" cy="20" r="6" style="animation-delay:2.7s;"/>
+        <text x="316" y="14" class="signal-flag" fill="#2E8B57">SIGNAL DETECTED</text>
+      </svg>
+    </div>
+  </div>
+</div>
+
+<div class="wrap">
+
+  <!-- Knowledge areas -->
+  <section id="pv">
+    <div class="section-head reveal">
+      <p class="eyebrow">What we cover</p>
+      <h2>Four working areas, one practice</h2>
+      <p>Each area is built from real workflows, not general theory — the same steps a PV or analytics team uses day to day.</p>
+    </div>
+    <div class="areas reveal">
+      <div class="area tall">
+        <div>
+          <div class="tag">01 — PHARMACOVIGILANCE</div>
+          <h3>Drug safety, end to end</h3>
+          <p>Case intake, MedDRA coding, safety database entry, signal detection, and aggregate reporting — the full ICSR lifecycle explained the way it actually runs inside a safety team.</p>
+        </div>
+        <a href="#" id="analytics">Open Pharmacovigilance →</a>
+      </div>
+      <div class="area">
+        <div class="tag">02 — HEALTHCARE ANALYTICS</div>
+        <h3>Excel, SQL &amp; Power BI</h3>
+        <p>Building dashboards and KPIs that a pharma or hospital ops team would actually use.</p>
+      </div>
+      <div class="area" id="ai">
+        <div class="tag">03 — AI IN PHARMA</div>
+        <h3>Where AI actually helps</h3>
+        <p>Generative AI, prompt engineering, and AI-assisted drug safety — grounded, not hyped.</p>
+      </div>
+      <div class="area" id="career" style="grid-column: span 2;">
+        <div class="tag">04 — CAREER HUB</div>
+        <h3>Resume, interviews, and what comes after B.Pharm or MBA</h3>
+        <p>Certifications, interview prep, and project ideas for pharmacy and healthcare graduates moving into safety, analytics, or AI roles.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Knowledge pathways -->
+  <section>
+    <div class="section-head reveal">
+      <p class="eyebrow">How it fits together</p>
+      <h2>Knowledge pathways</h2>
+      <p>The order each discipline is usually learned in — follow a row start to finish, or jump straight to the stage you're stuck on.</p>
+    </div>
+    <div class="pathways reveal">
+      <div class="pathway">
+        <div class="plabel">Pharmacovigilance</div>
+        <div class="psteps">
+          <span class="step">ICSR</span><span class="arrow">→</span>
+          <span class="step">MedDRA</span><span class="arrow">→</span>
+          <span class="step">Safety Database</span><span class="arrow">→</span>
+          <span class="step">Signal Detection</span><span class="arrow">→</span>
+          <span class="step">Aggregate Reporting</span>
+        </div>
+      </div>
+      <div class="pathway">
+        <div class="plabel">Healthcare Analytics</div>
+        <div class="psteps">
+          <span class="step">Excel</span><span class="arrow">→</span>
+          <span class="step">SQL</span><span class="arrow">→</span>
+          <span class="step">Power BI</span><span class="arrow">→</span>
+          <span class="step">Healthcare KPIs</span><span class="arrow">→</span>
+          <span class="step">Dashboards</span>
+        </div>
+      </div>
+      <div class="pathway">
+        <div class="plabel">Pharma &amp; AI</div>
+        <div class="psteps">
+          <span class="step">Generative AI</span><span class="arrow">→</span>
+          <span class="step">Prompt Engineering</span><span class="arrow">→</span>
+          <span class="step">AI in Drug Safety</span><span class="arrow">→</span>
+          <span class="step">Digital Health</span>
+        </div>
+      </div>
+      <div class="pathway">
+        <div class="plabel">Career Development</div>
+        <div class="psteps">
+          <span class="step">Resume</span><span class="arrow">→</span>
+          <span class="step">Interviews</span><span class="arrow">→</span>
+          <span class="step">Certifications</span><span class="arrow">→</span>
+          <span class="step">Jobs</span><span class="arrow">→</span>
+          <span class="step">Projects</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Featured resources -->
+  <section id="resources">
+    <div class="section-head reveal">
+      <p class="eyebrow">Start here</p>
+      <h2>Featured resources</h2>
+    </div>
+    <div class="resources reveal">
+      <div class="resource">
+        <div class="tag">PV E-NOTES</div>
+        <h3>PV Interview E-Notes</h3>
+        <p>Interview questions and answers written for pharmacovigilance freshers, covering ICSR handling through signal management.</p>
+        <a href="#">View notes →</a>
+      </div>
+      <div class="resource">
+        <div class="tag">PROJECTS</div>
+        <h3>Healthcare Analytics Projects</h3>
+        <p>Practical, portfolio-ready projects built in Excel, SQL, and Power BI using realistic healthcare datasets.</p>
+        <a href="#">Browse projects →</a>
+      </div>
+      <div class="resource">
+        <div class="tag">CAREER GUIDE</div>
+        <h3>Pharma Career Guide 2026</h3>
+        <p>Career pathways after B.Pharm and MBA — which roles exist, what they pay, and how to move between them.</p>
+        <a href="#">Read the guide →</a>
+      </div>
+    </div>
+  </section>
+
+</div>
+
+<!-- Why Pharma AI — as a funnel, not four equal icons -->
+<div class="why-section">
+  <div class="wrap" style="padding:88px 0;">
+    <div class="section-head reveal">
+      <p class="eyebrow">Why Pharma AI</p>
+      <h2>Built to move you forward, in order</h2>
+    </div>
+    <div class="funnel reveal">
+      <div class="funnel-step">
+        <div class="fnum">01</div>
+        <h3>Learn</h3>
+        <p>Practical pharma and healthcare knowledge, explained in plain terms.</p>
+      </div>
+      <div class="funnel-step">
+        <div class="fnum">02</div>
+        <h3>Build</h3>
+        <p>Projects that hold up in a portfolio, not just a certificate.</p>
+      </div>
+      <div class="funnel-step">
+        <div class="fnum">03</div>
+        <h3>Grow</h3>
+        <p>Career guidance and interview preparation for your next move.</p>
+      </div>
+      <div class="funnel-step">
+        <div class="fnum">04</div>
+        <h3>Innovate</h3>
+        <p>See where AI is genuinely changing healthcare work today.</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="wrap">
+  <!-- About founder -->
+  <section id="about">
+    <div class="section-head reveal">
+      <p class="eyebrow">About Pharma AI</p>
+      <h2>Built by a practitioner, not a marketing team</h2>
+    </div>
+    <div class="about reveal">
+      <div class="avatar">MP</div>
+      <div>
+        <h3>Mayur Patil</h3>
+        <div class="cred">B.Pharm · MBA Business Analytics · Pharma &amp; Healthcare Professional</div>
+        <p>Pharma AI is a knowledge platform focused on pharmacovigilance, healthcare analytics, digital health, artificial intelligence, and career development for pharmacy and healthcare professionals — built from the same questions I had moving through this field myself.</p>
+        <a href="#" class="btn btn-dark">Learn more about me →</a>
+      </div>
+    </div>
+  </section>
+</div>
+
+<footer>
+  <div class="wrap foot-grid">
+    <div>
+      <div class="foot-brand">PHARMA<span style="color:#2E8B57;">AI</span></div>
+      <div>Advancing Pharma Through AI</div>
+    </div>
+    <div style="display:flex; gap:22px; flex-wrap:wrap;">
+      <a href="#pv">Pharmacovigilance</a>
+      <a href="#analytics">Healthcare Analytics</a>
+      <a href="#ai">AI in Pharma</a>
+      <a href="#career">Career Hub</a>
+      <a href="#about">About</a>
+    </div>
+  </div>
+</footer>
+
+<script>
+  const io = new IntersectionObserver((entries)=>{
+    entries.forEach(e=>{
+      if(e.isIntersecting){ e.target.classList.add('in'); io.unobserve(e.target); }
+    });
+  }, {threshold:0.12});
+  document.querySelectorAll('.reveal').forEach(el=>io.observe(el));
+</script>
+
+</body>
+</html>
